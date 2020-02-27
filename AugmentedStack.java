@@ -1,12 +1,3 @@
-package a2;
-
-/*
- * Name: Benjamin Pickers
- * EECS account: ben10p
- * Student Number: 216425456
- */
-
-
 public class AugmentedStack<T extends Comparable<T>>
 {
 	private Comparable<T>[] s;
