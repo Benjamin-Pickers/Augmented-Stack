@@ -1,8 +1,8 @@
 public class AugmentedStack<T extends Comparable<T>>
 {
 	private Comparable<T>[] s;
-	private Comparable<T>[] minS;
-	private int minTop = -1;
+	private Comparable<T>[] maxS;
+	private int maxTop = -1;
 	private int top = -1;
 	
 	public AugmentedStack()
@@ -14,7 +14,7 @@ public class AugmentedStack<T extends Comparable<T>>
 	public AugmentedStack(int size)
 	{
 		s = new Comparable[size]; 
-		minS = new Comparable[size];
+		maxS = new Comparable[size];
 	}
 	
 	/**
@@ -25,9 +25,9 @@ public class AugmentedStack<T extends Comparable<T>>
 	{
 		s[++top] = x;
 		
-		if(minTop < 0 || (minS[minTop].compareTo(x)) > 0)
+		if(maxTop < 0 || (maxS[maxTop].compareTo(x)) < 0)
 		{
-			minS[++minTop] = x;
+			maxS[++maxTop] = x;
 		}
 	}
 	
@@ -46,10 +46,10 @@ public class AugmentedStack<T extends Comparable<T>>
 		s[top] = null;
 		top--;
 		
-		if (minS[minTop] == obj)
+		if (maxS[maxTop] == obj)
 		{
-			minS[minTop] = null;
-			minTop--;
+			maxS[maxTop] = null;
+			maxTop--;
 		}
 		return obj;
 	}
@@ -83,15 +83,15 @@ public class AugmentedStack<T extends Comparable<T>>
 	
 	/**
 	 * 
-	 * @return minimum value from the stack 
+	 * @return maximum value from the stack 
 	 */
-	public Comparable<T> getMin()
+	public Comparable<T> getMax()
 	{
-		if(minTop < 0)
+		if(maxTop < 0)
 		{
 			return null;
 		}
 		
-		return minS[minTop];
+		return maxS[maxTop];
 	}
 }
